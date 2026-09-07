@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#F472A0">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<title>RC九州 · 旅行手冊</title>
+<title>日本洩壓之旅 · 旅行手冊</title>
 <style>
   :root{
     --pink:#F472A0; --pink-d:#E8557F; --pink-soft:#FCE7F0; --pink-line:#F9CEDF;
@@ -258,7 +258,7 @@
   <section class="tab-page active" id="page-trip">
     <div class="head">
       <svg class="mascot" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#fff" opacity=".18"/><path d="M15 55a35 30 0 0 1 70 0z" fill="#E8455F"/><circle cx="42" cy="48" r="7" fill="#fff"/><circle cx="62" cy="48" r="7" fill="#fff"/><circle cx="43" cy="49" r="2.6" fill="#3A2E33"/><circle cx="63" cy="49" r="2.6" fill="#3A2E33"/><path d="M40 63q10 8 20 0" stroke="#3A2E33" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
-      <h1>RC九州</h1><div class="sub">福岡 · 阿蘇 · 熊本</div>
+      <h1>日本洩壓之旅</h1><div class="sub">福岡 · 阿蘇 · 熊本</div>
       <div class="pill">📅 09/09 – 09/15 · 7 天</div>
     </div>
     <nav class="days" id="tabs" role="tablist"></nav>
@@ -332,20 +332,23 @@
       </div>
       <div class="info-card">
         <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 18V9a1 1 0 0 1 1-1h9a3 3 0 0 1 3 3v3h4a1 1 0 0 1 1 1v3" stroke="#F472A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 18h18" stroke="#F472A0" stroke-width="2" stroke-linecap="round"/></svg></span>住宿</h3>
-        <div class="info-row"><span class="k">09/09–09/11</span><span class="v">ALPHABED INN Ohori Koen</span></div>
-        <div class="info-row"><span class="k">09/13</span><span class="v">Kamenoi Hotel Aso</span></div>
-        <div class="info-row"><span class="k">09/14</span><span class="v">The LOFT INN HAKATA</span></div>
+        <div class="info-row"><span class="k">09/09–09/11</span><span class="v">ALPHABED INN Ohori Koen <a href="https://www.google.com/maps/search/?api=1&query=ALPHABED%20INN%20Ohori%20Koen" target="_blank" rel="noopener" style="margin-left:6px;color:var(--pink-d);font-weight:700">📍導航</a></span></div>
+        <div class="info-row"><span class="k">09/13</span><span class="v">Kamenoi Hotel Aso <a href="https://www.google.com/maps/search/?api=1&query=Kamenoi%20Hotel%20Aso" target="_blank" rel="noopener" style="margin-left:6px;color:var(--pink-d);font-weight:700">📍導航</a></span></div>
+        <div class="info-row"><span class="k">09/14</span><span class="v">The LOFT INN HAKATA <a href="https://www.google.com/maps/search/?api=1&query=The%20LOFT%20INN%20HAKATA" target="_blank" rel="noopener" style="margin-left:6px;color:var(--pink-d);font-weight:700">📍導航</a></span></div>
         <div class="placeholder" style="margin-top:8px">地址 / 訂房編號 / 電話等你貼給我再補。</div>
       </div>
       <div class="info-card">
         <h3><span class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#F472A0" stroke-width="2" stroke-linecap="round"/></svg></span>快速匯率換算</h3>
-        <div class="info-row"><span class="k">參考匯率</span><span class="v">1 台幣 ≈ <span id="fx-rate-disp">4.7</span> 日圓</span></div>
-        <div class="fx-box">
-          <input id="fx-twd" type="number" inputmode="decimal" placeholder="輸入台幣">
-          <span class="fx-out"><span id="fx-jpy">0</span> 円</span>
+        <div class="info-row"><span class="k">參考匯率</span><span class="v">1 台幣 ≈ <span id="fx-rate-disp">5</span> 日圓</span></div>
+        <div class="fx-box" style="gap:8px">
+          <button id="fx-dir" type="button" style="flex:0 0 auto;padding:8px 12px;border-radius:10px;border:none;background:var(--pink-soft);color:var(--pink-d);font-weight:700">台幣→日圓</button>
         </div>
         <div class="fx-box" style="margin-top:6px">
-          <input id="fx-rate" type="number" inputmode="decimal" placeholder="調整匯率(預設4.7)">
+          <input id="fx-in" type="number" inputmode="decimal" placeholder="輸入台幣">
+          <span class="fx-out"><span id="fx-out-val">0</span> <span id="fx-out-unit">円</span></span>
+        </div>
+        <div class="fx-box" style="margin-top:6px">
+          <input id="fx-rate" type="number" inputmode="decimal" placeholder="調整匯率(預設5)">
           <span class="fx-out" style="color:var(--muted);font-size:13px">改匯率</span>
         </div>
       </div>
@@ -440,48 +443,58 @@ const DAYS=[
  {n:1,date:"09/09",wk:"週三",clr:"var(--d1)",stops:[
    {t:"06:45",self:1,ic:"plane",name:"臺灣桃園國際機場",d:"位於桃園市大園區的機場,設有圖書館、遊戲區、購物區、餐廳並提供淋浴設施。"},
    {t:"11:00",self:1,ic:"train",name:"福岡國際機場",d:""},
-   {t:"12:00",self:1,ic:"hotel",name:"ALPHABED INN Ohori Koen",d:""},
+   {t:"12:00",self:1,ic:"hotel",name:"Oneness House KEGO/ ワンネスハウス警固",d:""},
    {t:"13:00",self:1,ic:"food",name:"Robata no Ito Okashi",d:""},
-   {t:"13:50",ic:"shop",name:"ニンテンドーフクオカ",d:"任天堂福岡直營店。"},
+   {t:"13:50",ic:"shop",name:"ニンテンドーフクオカ",d:""},
    {t:"16:00",self:1,ic:"photo",name:"博多運河城",d:"大型購物中心,有名牌專賣店、名產商店、餐廳和噴泉表演。"},
    {t:"17:05",ic:"food",name:"中州屋台",d:""},
-   {t:"18:05",ic:"food",name:"天神屋台",d:""},
-   {t:"19:05",ic:"hotel",name:"ALPHABED INN Ohori Koen",d:""}]},
+   {t:"21:00",ic:"food",name:"博多爐端 魚男",d:"爐端燒表演、新鮮海鮮、博多名物階梯定食,適合朋友聚餐與體驗居酒屋文化。"},
+   {t:"22:00",self:1,ic:"hotel",name:"Oneness House KEGO/ ワンネスハウス警固",d:""}]},
  {n:2,date:"09/10",wk:"週四",clr:"var(--d2)",stops:[
-   {t:"08:00",ic:"food",name:"麵や兼虎 天神西通り店",d:""},
+   {t:"09:00",self:1,ic:"food",name:"FUGLEN KEYAKI DŌRI",d:"北歐風格咖啡廳,福岡2號店,文青打卡熱點,窗邊自然光適合拍咖啡拉花。"},
+   {t:"10:00",ic:"photo",name:"大濠公園",d:"城市公園,有大型湖泊、海濱運動步道、租船處和咖啡廳。"},
+   {t:"11:00",ic:"photo",name:"福岡市美術館",d:"擁有眾多收藏品,包括亞洲及其他地區的史前雕塑及當代畫作。"},
+   {t:"11:30",self:1,ic:"food",name:"麵や兼虎 天神西通り店",d:""},
    {t:"15:00",self:1,ic:"photo",name:"王貞治棒球紀念館",d:""},
    {t:"18:00",self:1,ic:"photo",name:"福岡巨蛋",d:"福岡軟銀鷹棒球隊主場,設有活動式屋頂,也會做為演唱會場地。"},
    {t:"22:00",ic:"food",name:"屋台炒拉麵 小金ちゃん",d:""},
-   {t:"23:00",ic:"food",name:"年糕餃子 純情屋台 喜柳",d:""}]},
+   {t:"23:00",ic:"food",name:"LIVING STEREO MUSIC BAR & RECORD STORE",d:"1000張以上黑膠唱片的音樂主題酒吧,音響效果好、氛圍Chill,適合音樂愛好者。"},
+   {t:"00:00",ic:"food",name:"年糕餃子 純情屋台 喜柳",d:""}]},
  {n:3,date:"09/11",wk:"週五",clr:"var(--d3)",stops:[
    {t:"08:30",self:1,ic:"food",name:"山水水出咖啡",d:""},
    {t:"09:30",ic:"photo",name:"太宰府天滿宮",d:"熱門的神社,供奉學習之神,擁有博物館和梅樹花園。"},
    {t:"10:30",ic:"photo",name:"寶滿宮 竈門神社",d:"坐落在樹蔭間的靜謐神社,內有雕塑、步道和季節性的樹景。"},
-   {t:"11:30",ic:"shop",name:"Mitsui Shopping Park LaLaport福岡",d:"初次進軍九州的LaLaport,距離博多站開車約20分鐘,搭車至「竹下」站後徒步也可抵達。結合時尚、美食與娛樂。"},
-   {t:"12:30",ic:"train",name:"天神",d:""}]},
+   {t:"15:00",self:1,ic:"shop",name:"Mitsui Shopping Park LaLaport福岡",d:"初次進軍九州的LaLaport,距離博多站開車約20分鐘,搭車至「竹下」站後徒步也可抵達。結合時尚、美食與娛樂,可同時滿足各年齡層五感的感官樂園。利用多個廣場及商業空間,創造出可盡情購物、用餐及娛樂體驗的空間。園內有日本最大鋼彈立像,必拍。"},
+   {t:"17:00",self:1,ic:"train",name:"天神",d:""},
+   {t:"20:30",self:1,ic:"food",name:"Musashiza",d:"爐端燒、串燒、炭火烤製,福岡必試美食,Trip.com評分5.0,沙丁魚炭烤超鮮美。建議預約。"},
+   {t:"21:30",ic:"shop",name:"SUNNY 警固店",d:"24小時營業大型超市,清潔整齊、自助結帳,適合深夜補貨飲料零食。"}]},
  {n:4,date:"09/12",wk:"週六",clr:"var(--d4)",stops:[
-   {t:"08:00",ic:"photo",name:"ONE FUKUOKA 大樓",d:""},
+   {t:"10:00",self:1,ic:"photo",name:"ONE FUKUOKA 大樓",d:""},
+   {t:"11:30",self:1,ic:"food",name:"大砲拉麵",d:"濃厚豚骨拉麵,油脂香氣重,道地福岡口味,能接受油脂味者會很愛。"},
+   {t:"12:30",ic:"train",name:"藥院大通",d:"咖啡廳、雜貨店、文青小物聚集區,適合散步尋找隱藏版店家。"},
    {t:"17:00",self:1,ic:"photo",name:"筑前國一之宮 筥崎宮",d:"環境生機盎然的古老神社,有著名古文物和傳統活動。"}]},
  {n:5,date:"09/13",wk:"週日",clr:"var(--d5)",stops:[
-   {t:"08:00",ic:"photo",name:"如意輪寺",d:""},
-   {t:"09:00",ic:"photo",name:"Attack on Titan in HITA Museum ANNEX",d:"《進擊的巨人》相關展館。"},
-   {t:"10:00",ic:"photo",name:"Attack on Titan Oyama Dam Statue",d:"抬頭望著高聳水壩的雕像,出自於熱門漫畫《進擊的巨人》中的 3 位角色。"},
-   {t:"11:00",ic:"photo",name:"Aso Skyline Observatory",d:""},
-   {t:"12:00",ic:"photo",name:"大觀峰展望所",d:"可俯瞰壯觀的阿蘇山火山口和周圍山谷的觀景點,附設小吃攤商。"},
-   {t:"13:00",ic:"train",name:"阿蘇",d:""},
-   {t:"14:00",ic:"photo",name:"草千里(草千里之濱)",d:"綠草如茵的恬靜高原,設有小徑,可飽覽日本最大活火山阿蘇山的美景。"},
-   {t:"15:00",ic:"mtn",name:"阿蘇山",d:"周長約 75 英里的活火山,坐擁由 5 座不同山峰所形成的火山錐地貌。"},
-   {t:"16:00",ic:"hotel",name:"Kamenoi Hotel Aso",d:"休閒溫泉飯店設有溫馨的餐廳和大眾溫泉澡堂。"}]},
+   {t:"08:00",ic:"food",name:"Dacomecca",d:"I'm donut?姐妹品牌,天然酵母麵包排隊名店,外皮香脆內餡豐富。建議8:00–9:00前往避免排隊。"},
+   {t:"09:00",ic:"photo",name:"如意輪寺",d:""},
+   {t:"10:00",ic:"photo",name:"Attack on Titan in HITA Museum ANNEX",d:""},
+   {t:"11:00",ic:"photo",name:"Attack on Titan Oyama Dam Statue",d:"抬頭望著高聳水壩的雕像,出自於熱門漫畫《進擊的巨人》中的 3 位角色。"},
+   {t:"12:00",ic:"photo",name:"Aso Skyline Observatory",d:""},
+   {t:"13:00",ic:"photo",name:"大觀峰展望所",d:"可俯瞰壯觀的阿蘇山火山口和周圍山谷的觀景點,附設小吃攤商。"},
+   {t:"14:00",ic:"train",name:"阿蘇",d:""},
+   {t:"15:00",ic:"photo",name:"草千里(草千里之濱)",d:"綠草如茵的恬靜高原,設有小徑,可飽覽日本最大活火山阿蘇山的美景。"},
+   {t:"16:00",ic:"mtn",name:"阿蘇山",d:"周長約 75 英里的活火山,坐擁由 5 座不同山峰所形成的火山錐地貌。"},
+   {t:"17:00",ic:"hotel",name:"Kamenoi Hotel Aso",d:"休閒溫泉飯店設有溫馨的餐廳和大眾溫泉澡堂。"}]},
  {n:6,date:"09/14",wk:"週一",clr:"var(--d6)",stops:[
-   {t:"08:00",ic:"mtn",name:"阿蘇山",d:"周長約 75 英里的活火山,坐擁由 5 座不同山峰所形成的火山錐地貌。"},
-   {t:"09:00",ic:"photo",name:"上色見熊野座神社",d:"景色優美的神社和天然石拱,可經由石燈籠林立的陡峭林間小徑抵達。"},
-   {t:"10:00",ic:"photo",name:"熊本城",d:"這座重建的城堡最初於西元 1607 年建成,坐落在山頂上,設有歷史博物館。"},
-   {t:"11:00",ic:"shop",name:"熊本熊廣場",d:"有黑熊吉祥物坐鎮的觀光禮品店,提供當地資訊、在地產品和美食。"},
-   {t:"12:00",ic:"photo",name:"八千代座",d:""},
-   {t:"13:00",ic:"photo",name:"高良大社",d:"宏偉的神社,擁有茅草屋頂、雕飾繁複的木質天花板,以及色彩繽紛的杜鵑花樹。"},
-   {t:"14:00",ic:"hotel",name:"The LOFT INN HAKATA",d:""}]},
+   {t:"08:00",ic:"hotel",name:"Kamenoi Hotel Aso",d:"休閒溫泉飯店設有溫馨的餐廳和大眾溫泉澡堂。"},
+   {t:"09:00",self:1,ic:"mtn",name:"阿蘇山",d:"周長約 75 英里的活火山,坐擁由 5 座不同山峰所形成的火山錐地貌。"},
+   {t:"10:00",ic:"photo",name:"上色見熊野座神社",d:"景色優美的神社和天然石拱,可經由石燈籠林立的陡峭林間小徑抵達。"},
+   {t:"11:00",ic:"photo",name:"熊本城",d:"這座重建的城堡最初於西元 1607 年建成,坐落在山頂上,設有歷史博物館。"},
+   {t:"12:00",ic:"shop",name:"熊本熊廣場",d:"有黑熊吉祥物坐鎮的觀光禮品店,提供當地資訊、在地產品和美食。"},
+   {t:"15:00",self:1,ic:"photo",name:"八千代座",d:"百年木造劇場,國家重要文化財,傳統歌舞伎舞台,復古氛圍濃厚適合拍照。門票約520日圓。"},
+   {t:"17:00",self:1,ic:"photo",name:"高良大社",d:"宏偉的神社,擁有茅草屋頂、雕飾繁複的木質天花板,以及色彩繽紛的杜鵑花樹。"},
+   {t:"20:00",self:1,ic:"hotel",name:"The LOFT INN HAKATA",d:"設計旅店,免費Wi-Fi、禁菸,近千代縣廳口站,評分8.6/10,房間舒適服務好。"}]},
  {n:7,date:"09/15",wk:"週二",clr:"var(--d7)",stops:[
-   {t:"08:00",ic:"shop",name:"天神地下街",d:"採用歐式風格的大型地下購物中心,設有 12 條商店和餐廳林立的「大道」。"},
+   {t:"08:00",self:1,ic:"shop",name:"天神地下街",d:"採用歐式風格的大型地下購物中心,設有 12 條商店和餐廳林立的「大道」。"},
    {t:"09:00",ic:"train",name:"藥院",d:""},
    {t:"21:00",self:1,ic:"train",name:"福岡機場國際線",d:""}]}
 ];
@@ -489,22 +502,27 @@ const DAY_CLR=["var(--d1)","var(--d2)","var(--d3)","var(--d4)","var(--d5)","var(
 // 依地點補地區關鍵字,提高日文店名搜尋命中率
 const MAP_HINT={
  "臺灣桃園國際機場":"台湾桃園国際空港","福岡國際機場":"福岡空港 国際線",
- "ALPHABED INN Ohori Koen":"ALPHABED INN 大濠公園 福岡",
+ "Oneness House KEGO/ ワンネスハウス警固":"Oneness House 警固 福岡",
  "Robata no Ito Okashi":"炉端 いと 大濠 福岡","ニンテンドーフクオカ":"Nintendo TOKYO 福岡 天神",
- "博多運河城":"キャナルシティ博多","中州屋台":"中洲 屋台 福岡","天神屋台":"天神 屋台 福岡",
+ "博多運河城":"キャナルシティ博多","中州屋台":"中洲 屋台 福岡","博多爐端 魚男":"博多炉端 魚男",
+ "FUGLEN KEYAKI DŌRI":"FUGLEN 福岡 けやき通り","大濠公園":"大濠公園 福岡","福岡市美術館":"福岡市美術館",
  "麵や兼虎 天神西通り店":"麺や兼虎 天神西通り店","王貞治棒球紀念館":"王貞治ベースボールミュージアム 福岡",
  "福岡巨蛋":"福岡PayPayドーム","屋台炒拉麵 小金ちゃん":"屋台 小金ちゃん 天神 福岡",
+ "LIVING STEREO MUSIC BAR & RECORD STORE":"LIVING STEREO 音楽バー 福岡",
  "年糕餃子 純情屋台 喜柳":"純情屋台 喜柳 天神 福岡","山水水出咖啡":"山水 水出し珈琲 福岡",
  "太宰府天滿宮":"太宰府天満宮","寶滿宮 竈門神社":"宝満宮竈門神社",
  "Mitsui Shopping Park LaLaport福岡":"ららぽーと福岡","天神":"天神駅 福岡",
- "ONE FUKUOKA 大樓":"ONE FUKUOKA BLDG 天神","筑前國一之宮 筥崎宮":"筥崎宮 福岡",
- "如意輪寺":"如意輪寺 かえる寺 小郡","Attack on Titan in HITA Museum ANNEX":"進撃の巨人 日田市 大山ダム",
+ "Musashiza":"むさし座 天神 福岡","SUNNY 警固店":"SUNNY 警固店 福岡",
+ "ONE FUKUOKA 大樓":"ONE FUKUOKA BLDG 天神","大砲拉麵":"大砲ラーメン 福岡","藥院大通":"薬院大通駅 福岡",
+ "筑前國一之宮 筥崎宮":"筥崎宮 福岡",
+ "Dacomecca":"ダコメッカ 福岡","如意輪寺":"如意輪寺 かえる寺 小郡","Attack on Titan in HITA Museum ANNEX":"進撃の巨人 日田市 大山ダム",
  "Attack on Titan Oyama Dam Statue":"進撃の巨人 銅像 大山ダム 日田",
  "Aso Skyline Observatory":"阿蘇スカイライン展望所","大觀峰展望所":"大観峰 阿蘇",
  "阿蘇":"阿蘇駅","草千里(草千里之濱)":"草千里ヶ浜 阿蘇","阿蘇山":"阿蘇山 火口",
  "Kamenoi Hotel Aso":"亀の井ホテル 阿蘇","上色見熊野座神社":"上色見熊野座神社",
  "熊本城":"熊本城","熊本熊廣場":"くまモンスクエア 熊本","八千代座":"八千代座 山鹿",
- "高良大社":"高良大社 久留米","天神地下街":"天神地下街 福岡","藥院":"薬院駅 福岡",
+ "高良大社":"高良大社 久留米","The LOFT INN HAKATA":"The LOFT INN HAKATA 博多",
+ "天神地下街":"天神地下街 福岡","藥院":"薬院駅 福岡",
  "福岡機場國際線":"福岡空港 国際線ターミナル"
 };
 function mapURL(n){const q=MAP_HINT[n]||n;return "https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);}
@@ -723,7 +741,7 @@ let members=store.get("rc_members",[]);      // ["我","阿明"...]
 let pickCat=CATS[0], pickCur="JPY", pickPayer=null, pickSharers=[];
 
 // 匯率取自資訊頁(rc_fxrate),1台幣=fxRate日圓
-function rate(){return store.get("rc_fxrate",4.7);}
+function rate(){return store.get("rc_fxrate",5);}
 // 一律換算成日圓當基準
 function toJPY(amt,cur){return cur==="TWD"?amt*rate():amt;}
 function jpyToTwd(j){return j/rate();}
@@ -905,14 +923,26 @@ document.getElementById("l-add").addEventListener("click",addTodo);
 document.getElementById("l-input").addEventListener("keydown",e=>{if(e.key==="Enter")addTodo();});
 renderList();
 
-/* ============ 匯率換算 ============ */
-let fxRate=store.get("rc_fxrate",4.7);
+/* ============ 匯率換算(可切換方向) ============ */
+let fxRate=store.get("rc_fxrate",5);
 document.getElementById("fx-rate-disp").textContent=fxRate;
-function calcFx(){const twd=Number(document.getElementById("fx-twd").value)||0;
-  document.getElementById("fx-jpy").textContent=Math.round(twd*fxRate).toLocaleString();}
-document.getElementById("fx-twd").addEventListener("input",calcFx);
+let fxDir=store.get("rc_fxdir","twd2jpy"); // twd2jpy | jpy2twd
+function applyFxDir(){
+  const btn=document.getElementById("fx-dir"),inp=document.getElementById("fx-in"),unit=document.getElementById("fx-out-unit");
+  if(fxDir==="twd2jpy"){btn.textContent="台幣→日圓";inp.placeholder="輸入台幣";unit.textContent="円";}
+  else{btn.textContent="日圓→台幣";inp.placeholder="輸入日圓";unit.textContent="元";}
+}
+function calcFx(){
+  const v=Number(document.getElementById("fx-in").value)||0;
+  const out=fxDir==="twd2jpy"?v*fxRate:v/fxRate;
+  document.getElementById("fx-out-val").textContent=(fxDir==="twd2jpy"?Math.round(out):out.toFixed(1)).toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+}
+document.getElementById("fx-in").addEventListener("input",calcFx);
+document.getElementById("fx-dir").addEventListener("click",()=>{
+  fxDir=fxDir==="twd2jpy"?"jpy2twd":"twd2jpy";store.set("rc_fxdir",fxDir);applyFxDir();calcFx();});
 document.getElementById("fx-rate").addEventListener("input",e=>{
   const r=Number(e.target.value);if(r>0){fxRate=r;store.set("rc_fxrate",r);document.getElementById("fx-rate-disp").textContent=r;calcFx();}});
+applyFxDir();
 
 /* ============ 初始渲染(放最後,確保所有資料已定義) ============ */
 selectDay(initDay());
