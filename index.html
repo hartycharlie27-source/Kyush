@@ -97,9 +97,7 @@
   .next.empty{justify-content:center;color:var(--muted);font-weight:600;font-size:14px}
 
   .stop{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:10px;
-    overflow:hidden;border-left:4px solid var(--dayclr,var(--pink));cursor:pointer;transition:transform .15s ease}
-  .stop:active{transform:scale(.985)}
-  .stop:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+    overflow:hidden;border-left:4px solid var(--dayclr,var(--pink))}
   .stop .row{display:flex;align-items:center;gap:12px;padding:13px 15px;min-height:54px}
   .stop .ic{flex:0 0 auto;width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--pink-soft)}
   .stop .ic svg{width:20px;height:20px}
@@ -107,18 +105,14 @@
   .stop .time{font-size:13px;font-weight:700;color:var(--muted)}
   .stop .time .self{color:var(--pink)}
   .stop .title{font-size:16px;font-weight:700;margin-top:1px;line-height:1.35}
-  .stop .chev{flex:0 0 auto;color:var(--pink-line);transition:transform .2s ease}
-  .stop[aria-expanded="true"] .chev{transform:rotate(90deg)}
-  .stop .desc{max-height:0;overflow:hidden;transition:max-height .25s ease,padding .25s ease;padding:0 15px;font-size:14px;line-height:1.6}
-  .stop[aria-expanded="true"] .desc{max-height:420px;padding:12px 15px 15px;border-top:1px solid var(--line)}
-  .stop .desc.none{color:var(--muted)}
+  .stop .stopActions{display:flex;flex-wrap:wrap;gap:8px;padding:0 15px 14px}
   .stop.iscur{border-left-width:8px;box-shadow:0 0 0 2px var(--dayclr,var(--pink)) inset,var(--shadow)}
   .stop .mark{flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:2px solid var(--pink-line);background:#fff;
     display:flex;align-items:center;justify-content:center;cursor:pointer}
   .stop.iscur .mark{background:var(--dayclr,var(--pink));border-color:var(--dayclr,var(--pink))}
   .stop.iscur .mark svg{display:block}
   .stop .mark svg{display:none;width:14px;height:14px}
-  .stop .mapbtn{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:var(--green);
+  .stop .mapbtn{display:inline-flex;align-items:center;gap:6px;margin:0;background:var(--green);
     color:#fff;border:none;border-radius:12px;padding:9px 14px;font-weight:700;cursor:pointer;text-decoration:none}
 
   /* ---------- 時間軸路徑 ---------- */
@@ -319,7 +313,7 @@
 
   <!-- ======== 導覽 ======== -->
   <section class="tab-page" id="page-nav">
-    <div class="head"><h1>導覽</h1><div class="sub">九州論壇口碑推薦:必買 / 必拍</div></div>
+    <div class="head"><h1>導覽</h1><div class="sub">逐站對照 · 每個行程點的必吃必買必拍</div></div>
     <div class="wrap" id="rec-content"></div>
   </section>
 
@@ -498,13 +492,13 @@ const DAYS=[
    {t:"12:00",self:1,ic:"hotel",name:"Oneness House KEGO/ ワンネスハウス警固",d:""},
    {t:"13:00",self:1,ic:"food",name:"Robata no Ito Okashi",d:""},
    {t:"13:50",ic:"shop",name:"ニンテンドーフクオカ",d:""},
-   {t:"16:00",self:1,ic:"photo",name:"博多運河城",d:"大型購物中心,有名牌專賣店、名產商店、餐廳和噴泉表演。"},
+   {t:"16:00",self:1,ic:"photo",name:"博多運河城",d:"大型購物中心,有名牌專賣店、名產商店、餐廳和噴泉表演。2026新亮點:「拉麵競技場」4月重開(8間日本代表拉麵店)、星之卡比咖啡廳。"},
    {t:"17:05",ic:"food",name:"中州屋台",d:"IG/Dcard推薦攤位:「明太中毒」明太子創意料理、豬腳、炒飯。屋台氛圍體驗優先於單一必吃。"},
    {t:"21:00",ic:"food",name:"博多爐端 魚男",d:"爐端燒表演、新鮮海鮮、博多名物階梯定食,適合朋友聚餐與體驗居酒屋文化。Tabelog 3.49分,必點:海鮮定食、爐端串燒。"},
    {t:"22:00",self:1,ic:"hotel",name:"Oneness House KEGO/ ワンネスハウス警固",d:""}]},
  {n:2,date:"09/10",wk:"週四",clr:"var(--d2)",stops:[
    {t:"09:00",self:1,ic:"food",name:"FUGLEN KEYAKI DŌRI",d:"北歐風格咖啡廳,福岡2號店,文青打卡熱點,窗邊自然光適合拍咖啡拉花。"},
-   {t:"10:00",ic:"photo",name:"大濠公園",d:"城市公園,有大型湖泊、海濱運動步道、租船處和咖啡廳。"},
+   {t:"10:00",ic:"photo",name:"大濠公園",d:"城市公園,有大型湖泊、海濱運動步道、租船處和咖啡廳。2026 Threads熱門散步路線:大濠公園→福岡市美術館→Artist Cafe Fukuoka→大濠ブルワリー精釀啤酒,園內熱狗餐車也被推。"},
    {t:"11:00",ic:"photo",name:"福岡市美術館",d:"擁有眾多收藏品,包括亞洲及其他地區的史前雕塑及當代畫作。"},
    {t:"11:30",self:1,ic:"food",name:"麵や兼虎 天神西通り店",d:"福岡人氣排隊濃厚魚介豚骨拉麵店。必點:濃厚魚介豚骨つけ麺(沾麵)、辛辛魚つけ麺(辣版)、加點豚ご飯(豚肉飯)。"},
    {t:"15:00",self:1,ic:"photo",name:"王貞治棒球紀念館",d:""},
@@ -516,8 +510,8 @@ const DAYS=[
    {t:"08:30",self:1,ic:"food",name:"山水水出咖啡",d:""},
    {t:"09:30",ic:"photo",name:"太宰府天滿宮",d:"熱門的神社,供奉學習之神,擁有博物館和梅樹花園。IG/Dcard必吃:參道梅枝餅(かさの家、やす武)、天山草莓大福、Kingberry瓶裝草莓起司蛋糕。"},
    {t:"10:30",ic:"photo",name:"寶滿宮 竈門神社",d:"坐落在樹蔭間的靜謐神社,內有雕塑、步道和季節性的樹景。"},
-   {t:"15:00",self:1,ic:"shop",name:"Mitsui Shopping Park LaLaport福岡",d:"初次進軍九州的LaLaport,距離博多站開車約20分鐘,搭車至「竹下」站後徒步也可抵達。結合時尚、美食與娛樂,可同時滿足各年齡層五感的感官樂園。利用多個廣場及商業空間,創造出可盡情購物、用餐及娛樂體驗的空間。園內有日本最大鋼彈立像,必拍。"},
-   {t:"17:00",self:1,ic:"train",name:"天神",d:""},
+   {t:"15:00",self:1,ic:"shop",name:"Mitsui Shopping Park LaLaport福岡",d:"初次進軍九州的LaLaport,距離博多站開車約20分鐘,搭車至「竹下」站後徒步也可抵達。結合時尚、美食與娛樂,可同時滿足各年齡層五感的感官樂園。利用多個廣場及商業空間,創造出可盡情購物、用餐及娛樂體驗的空間。園內有日本最大鋼彈立像,必拍。2026必吃:「琥珀」宍道湖蜆中華蕎麥麵(米其林必比登,九州初店)、大吉壽司、伊都KING甘王草莓甜點。"},
+   {t:"17:00",self:1,ic:"train",name:"天神",d:"2026 Threads熱門清單(今泉/春吉周邊):麺屋いしヰ明太子奶油烏冬、DIG INN厚切貝果(今泉IG熱點)、宇どんヤかまわん麻婆豆腐烏冬。"},
    {t:"20:30",self:1,ic:"food",name:"Musashiza",d:"爐端燒、串燒、炭火烤製,福岡必試美食,Trip.com評分5.0,沙丁魚炭烤超鮮美。建議預約。必點:大とろいわし(炭烤鮪魚腹)、特大海老、明太玉子燒。"},
    {t:"21:30",ic:"shop",name:"SUNNY 警固店",d:"24小時營業大型超市,清潔整齊、自助結帳,適合深夜補貨飲料零食。"}]},
  {n:4,date:"09/12",wk:"週六",clr:"var(--d4)",stops:[
@@ -541,7 +535,7 @@ const DAYS=[
    {t:"09:00",self:1,ic:"mtn",name:"阿蘇山",d:"周長約 75 英里的活火山,坐擁由 5 座不同山峰所形成的火山錐地貌。"},
    {t:"10:00",ic:"photo",name:"上色見熊野座神社",d:"景色優美的神社和天然石拱,可經由石燈籠林立的陡峭林間小徑抵達。"},
    {t:"11:00",ic:"photo",name:"熊本城",d:"這座重建的城堡最初於西元 1607 年建成,坐落在山頂上,設有歷史博物館。附近IG/Dcard必吃:黑亭拉麵(加點炒飯)、上通商店街「菓舖まるいわ」銅鑼燒(推薦鹽味口味)。"},
-   {t:"12:00",ic:"shop",name:"熊本熊廣場",d:"有黑熊吉祥物坐鎮的觀光禮品店,提供當地資訊、在地產品和美食。"},
+   {t:"12:00",ic:"shop",name:"熊本熊廣場",d:"有黑熊吉祥物坐鎮的觀光禮品店,提供當地資訊、在地產品和美食。2026熊本必買伴手禮:譽之陣太鼓、栗千里、武者返夾心酥餅、阿蘇牛奶夾心餅乾,上下通商店街購買最方便。"},
    {t:"15:00",self:1,ic:"photo",name:"八千代座",d:"百年木造劇場,國家重要文化財,傳統歌舞伎舞台,復古氛圍濃厚適合拍照。門票約520日圓。"},
    {t:"17:00",self:1,ic:"photo",name:"高良大社",d:"宏偉的神社,擁有茅草屋頂、雕飾繁複的木質天花板,以及色彩繽紛的杜鵑花樹。"},
    {t:"20:00",self:1,ic:"hotel",name:"The LOFT INN HAKATA",d:"設計旅店,免費Wi-Fi、禁菸,近千代縣廳口站,評分8.6/10,房間舒適服務好。"}]},
@@ -633,22 +627,20 @@ function selectDay(i,animate=true,doScroll=true){
         :`<div class="next empty">${curIdx>=0?"今天最後一站了":"點下方景點左側圓鈕,標記你現在在哪一站(或等系統依現在時間自動抓)"}</div>`;
   h+=`<div class="timeline" style="--tclr:${d.clr}"><div class="rail"></div><div class="prog" id="tl-prog"></div>`;
   d.stops.forEach((s,idx)=>{
-    const has=s.d&&s.d.length;
     const isCur=idx===curIdx;
     const isDone=curIdx>=0&&idx<curIdx;
     const recNames=recMatchesFor(s.name);
     h+=`<div class="tl-row${isCur?" iscur":""}${isDone?" done":""}">
       <div class="tl-node"><span class="dot" role="button" aria-label="標記為目前站" data-mark="${idx}">${CHECK}</span></div>
       <div class="tl-card">
-      <div class="stop${animate?" tl-anim":""}${isCur?" iscur":""}" style="--dayclr:${d.clr};animation-delay:${animate?Math.min(idx*45,400):0}ms" tabindex="0" role="button" aria-expanded="false" data-idx="${idx}">
+      <div class="stop${animate?" tl-anim":""}${isCur?" iscur":""}" style="--dayclr:${d.clr};animation-delay:${animate?Math.min(idx*45,400):0}ms" data-idx="${idx}">
         <div class="row">
         <span class="ic">${ICONS[s.ic]}</span>
-        <span class="txt"><span class="time">${s.t}${s.self?' <span class="self">· 自訂</span>':""}</span><div class="title">${s.name}</div></span>
-        <span class="chev">${CHEV}</span></div>
-        <div class="desc ${has?"":"none"}">${has?s.d:"尚無說明"}
-          <div><a class="mapbtn" href="${mapURL(s.name)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" stroke="#fff" stroke-width="2"/><circle cx="12" cy="9" r="2.3" stroke="#fff" stroke-width="2"/></svg>用地圖導航</a>
-          ${recNames.length?`<button class="recjump" data-rec='${JSON.stringify(recNames)}' onclick="event.stopPropagation()">🛍 這裡有口碑推薦</button>`:""}</div>
+        <span class="txt"><span class="time">${s.t}${s.self?' <span class="self">· 自訂</span>':""}</span><div class="title">${s.name}</div></span></div>
+        <div class="stopActions">
+          <a class="mapbtn" href="${mapURL(s.name)}" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" stroke="#fff" stroke-width="2"/><circle cx="12" cy="9" r="2.3" stroke="#fff" stroke-width="2"/></svg>導航</a>
+          ${recNames.length?`<button class="recjump" data-rec='${JSON.stringify(recNames)}'>✨ 推薦</button>`:""}
         </div>
       </div></div></div>`;
   });
@@ -656,11 +648,6 @@ function selectDay(i,animate=true,doScroll=true){
   c.innerHTML=h;
   const progPct=curIdx>=0&&d.stops.length>1?(curIdx/(d.stops.length-1))*100:(curIdx===0?4:0);
   requestAnimationFrame(()=>{const p=document.getElementById("tl-prog");if(p)p.style.height=progPct+"%";});
-  c.querySelectorAll(".stop").forEach(el=>{
-    const tg=()=>el.setAttribute("aria-expanded",el.getAttribute("aria-expanded")==="true"?"false":"true");
-    el.addEventListener("click",tg);
-    el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tg();}});
-  });
   c.querySelectorAll(".tl-node .dot").forEach(el=>{
     el.addEventListener("click",e=>{
       e.stopPropagation();
@@ -684,88 +671,54 @@ function initDay(){const now=new Date();const md=(now.getMonth()+1)*100+now.getD
 // 每分鐘依真實時間自動重新判斷「目前站」(有手動標記則不受影響,只更新畫面用的其他資訊)
 setInterval(()=>{selectDay(currentDayIndex,false,false);},60000);
 
-/* ============ 行程站點 ↔ 口碑推薦 對照表 ============ */
-// key: 行程站點名稱一模一樣時自動對照;另外手動補充地點相近但名稱不同的關聯
-const STOP_REC_MAP={
- "福岡機場國際線":["明太子仙貝","龍角散喉糖(藍莓口味)","昆布鹽、柚子胡椒","福砂屋長崎蛋糕(推五三燒)","博多通饅頭(連續多年金賞)","Ball & Chain刺繡包"],
- "天神":["3 COINS 生活用品","藥妝面膜/保養品/零食"],
- "天神地下街":["3 COINS 生活用品","藥妝面膜/保養品/零食"],
- "博多運河城":["3 COINS 生活用品"]
+/* ============ 導覽頁:直接從行程(DAYS)自動產生,每個非旅館站點都會有一張卡 ============ */
+// 額外補充內容:名稱要跟 DAYS 裡的站點名稱一模一樣,才會合併進同一張卡
+const EXTRA_NOTE={
+ "臺灣桃園國際機場":"出發前可先逛免稅店、吃早餐,航廈內有淋浴間可利用。",
+ "福岡國際機場":"入境後可先在機場內超商/藥妝補貨,再搭地鐵進市區。",
+ "Robata no Ito Okashi":"抵達第一餐,爐端燒風格,適合墊胃。",
+ "ニンテンドーフクオカ":"任天堂官方商店,周邊商品、扭蛋機,任天堂迷必逛。",
+ "屋台炒拉麵 小金ちゃん":"深夜屋台炒拉麵,適合宵夜場。",
+ "LIVING STEREO MUSIC BAR & RECORD STORE":"1000張以上黑膠唱片主題酒吧,音響好、氛圍chill。",
+ "年糕餃子 純情屋台 喜柳":"深夜屋台,年糕餃子為招牌。",
+ "王貞治棒球紀念館":"棒球迷必訪,展示王貞治生涯文物。",
+ "福岡巨蛋":"軟銀鷹主場,可順道拍外觀或看有無比賽場次。",
+ "山水水出咖啡":"早晨水出冷萃咖啡,適合開啟太宰府半日遊。",
+ "寶滿宮 竈門神社":"鬼滅之刃聯名景點,楓葉季節美,建議拍照留意人潮。",
+ "SUNNY 警固店":"24小時大型超市,適合深夜補貨飲料零食。",
+ "ONE FUKUOKA 大樓":"天神新地標大樓,可順路拍外觀。",
+ "藥院大通":"咖啡廳、雜貨店、文青小物聚集區,適合散步尋寶。",
+ "筑前國一之宮 筥崎宮":"古老神社,環境生機盎然,有著名古文物。",
+ "Dacomecca":"I'm donut?姐妹品牌,排隊麵包店,建議8:00-9:00前往。",
+ "如意輪寺":"通稱「青蛙寺」,境內滿滿青蛙意象,適合拍照。",
+ "Attack on Titan in HITA Museum ANNEX":"進擊的巨人主題展示館。",
+ "Attack on Titan Oyama Dam Statue":"進擊的巨人角色銅像,粉絲必拍。",
+ "Aso Skyline Observatory":"沿途觀景台,可俯瞰阿蘇山谷地形。",
+ "大觀峰展望所":"可俯瞰阿蘇火山口與周圍山谷,附設小吃攤商。",
+ "草千里(草千里之濱)":"綠草如茵高原,可拍全景,天氣好時風景遼闊。",
+ "阿蘇山":"活火山景觀,注意即時開放狀態(可能因火山活動封閉)。",
+ "八千代座":"百年木造劇場,國家重要文化財,門票約520日圓。",
+ "高良大社":"茅草屋頂神社,雕飾繁複木質天花板,杜鵑花季節美。",
+ "藥院":"轉乘節點,附近有咖啡廳可稍作休息。"
 };
-
-/* ============ 口碑推薦(必買/必拍) ============ */
-const BUY=[
- {region:"福岡地區必買",items:[
-   {name:"福太郎明太子(瓶裝／盒裝)",place:"博多車站筑紫口 DEITOS「福太郎」專賣店",note:"PTT 多次推薦,又辣又下飯"},
-   {name:"明太子仙貝",place:"博多車站マイング、機場免稅店",note:"適合分送同事朋友,方便攜帶"},
-   {name:"小雞饅頭(吉野堂ひよ子)",place:"博多車站伴手禮區、機場",note:"經典九州銘菓"},
-   {name:"石村萬盛堂 祝うてサンド",place:"博多車站、福岡市區百貨",note:"棉花糖夾心餅乾,PTT 網友回購"},
-   {name:"3 COINS 生活用品",place:"AMU EST 博多、博多車站周邊",note:"Dcard 多次說必逛,便宜好看的旅行小物"},
-   {name:"龍角散喉糖(藍莓口味)",place:"LOPIA 超市、大國藥妝、機場",note:"Dcard 戰利品特別推薦,適合囤貨"},
-   {name:"昆布鹽、柚子胡椒",place:"超市、機場免稅",note:"九州特色調味料"}]},
- {region:"長崎‧佐賀地區必買",items:[
-   {name:"福砂屋長崎蛋糕",place:"福岡機場免稅店、長崎市區",note:"經典長崎名產"},
-   {name:"九十九島相關伴手禮",place:"九十九島周邊、佐世保",note:"地方特色,選擇較少可順手買"}]},
- {region:"藥妝與小家電",items:[
-   {name:"SALONIA 離子夾、TESCOM 吹風機",place:"博多友都八喜",note:"Dcard 網友認為價格款式比台灣好"},
-   {name:"藥妝面膜/保養品/零食",place:"博多天神、博多車站周邊藥妝店",note:"適合一次補貨"}]}
-];
-const PHOTO=[
- {region:"福岡與周邊",items:[
-   {name:"米之山展望台",place:"自駕較方便",note:"可一次拍到福岡塔、巨蛋、機場、海之中道、摩天輪"},
-   {name:"福岡塔",place:"福岡市區",note:"白天海景、傍晚夕陽夜景,拍照打卡首選"},
-   {name:"太宰府天滿宮",place:"太宰府",note:"參道、社殿、鳥居、季節花卉"},
-   {name:"櫛田神社",place:"博多,旁邊即川端通商店街",note:"交通方便,可邊逛邊拍"},
-   {name:"櫻井二見浦(夫婦岩)",place:"糸島",note:"海上白色鳥居,需排隊,晴天超美"},
-   {name:"Palm swing(糸島)",place:"糸島海岸",note:"沙灘、網美打卡、簡易滑索"}]},
- {region:"由布院‧別府‧大分",items:[
-   {name:"由布院之森列車",place:"由布院",note:"車內裝潢、車長制服、車上蓋章;車身較晃,拍照留意安全"},
-   {name:"金鱗湖",place:"由布院",note:"建議清晨去,霧氣與倒影、人潮較少"},
-   {name:"別府地獄巡禮(海地獄等)",place:"別府",note:"湛藍溫泉池,被形容像寶石一樣"}]},
- {region:"長崎‧佐賀",items:[
-   {name:"九十九島石岳展望台",place:"佐世保,適合自駕",note:"俯瞰群島,人少好拍"},
-   {name:"雲仙地獄",place:"雲仙",note:"夜間打燈步道、地熱谷,很有氛圍"},
-   {name:"武雄圖書館",place:"武雄",note:"書牆設計感空間,二樓拍整面書牆人較少"},
-   {name:"祐德稻荷神社",place:"佐賀",note:"紅色鳥居、高台類似清水舞台"},
-   {name:"哥拉巴園(長崎)",place:"長崎",note:"西式建築、長崎港景"},
-   {name:"眼鏡橋(長崎)",place:"長崎",note:"石橋與倒影形成眼鏡造型"}]},
- {region:"熊本‧高千穗‧宮崎方向",items:[
-   {name:"上色見熊野座神社",place:"高千穗行程一部分",note:"森林石階、苔蘚與光線,神祕氛圍"},
-   {name:"天岩戶神社",place:"高千穗",note:"神社與峽谷景觀"},
-   {name:"高千穗峽",place:"高千穗",note:"真名井瀑布、峽谷岩壁、遊船視角,網友大推超美"}]},
- {region:"門司港‧小倉",items:[
-   {name:"門司港レトロ展望室",place:"門司港,門票 300 日圓",note:"103公尺觀景台、270度港口視野,適合拍夜景"},
-   {name:"舊門司港建築群",place:"門司港",note:"復古紅磚建築,適合街拍與情侶照"}]}
-];
 function renderRec(){
   const c=document.getElementById("rec-content");let h="";
-  h+=`<div class="rec-group">必買清單</div>`;
-  BUY.forEach(g=>{
-    h+=`<div class="nav-daylabel">${g.region}</div>`;
-    g.items.forEach((it,idx)=>{
-      h+=`<div class="rec-card" role="button" tabindex="0" aria-expanded="false" data-name="${it.name}">
-        <div class="rrow"><span class="ic">${ICONS.shop}</span>
-        <span class="rtxt"><div class="rname">${it.name}</div><div class="rplace">${it.place}</div></span>
+  h+=`<div class="rec-group">依你的行程 · 每一站的必吃必買必拍</div>`;
+  DAYS.forEach(d=>{
+    const items=d.stops.filter(s=>s.ic!=="hotel");
+    if(!items.length)return;
+    h+=`<div class="nav-daylabel">第 ${d.n} 天 · ${d.date} ${d.wk}</div>`;
+    items.forEach(s=>{
+      const icon=ICONS[s.ic]||ICONS.photo;
+      const note=(s.d&&s.d.length?s.d:"")+(EXTRA_NOTE[s.name]?(s.d&&s.d.length?" ":"")+EXTRA_NOTE[s.name]:"");
+      const finalNote=note.length?note:"暫無額外推薦資訊,依景點本身探索即可。";
+      h+=`<div class="rec-card" role="button" tabindex="0" aria-expanded="false" data-name="${s.name}">
+        <div class="rrow"><span class="ic">${icon}</span>
+        <span class="rtxt"><div class="rname">${s.name}</div><div class="rplace">${s.t} · 第${d.n}天</div></span>
         <span class="chev">${CHEV}</span></div>
-        <div class="rdesc">${it.note}</div></div>`;
+        <div class="rdesc">${finalNote}</div></div>`;
     });
   });
-  h+=`<div class="rec-note">購物策略:大部分伴手禮集中在博多車站マイング與福岡機場免稅店買,避免分散購買、行李超重。不要只跟風買明太子或一蘭禮盒,先看口味與保存期限再決定份量。</div>`;
-  h+=`<div class="rec-group" style="margin-top:22px">必拍景點</div>`;
-  PHOTO.forEach(g=>{
-    h+=`<div class="nav-daylabel">${g.region}</div>`;
-    g.items.forEach(it=>{
-      h+=`<div class="rec-card" role="button" tabindex="0" aria-expanded="false" data-name="${it.name}">
-        <div class="rrow"><span class="ic">${ICONS.photo}</span>
-        <span class="rtxt"><div class="rname">${it.name}</div><div class="rplace">${it.place}</div></span>
-        <span class="chev">${CHEV}</span></div>
-        <div class="rdesc">${it.note}
-          <div><a class="mapbtn" href="${mapURL(it.name)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" stroke="#fff" stroke-width="2"/><circle cx="12" cy="9" r="2.3" stroke="#fff" stroke-width="2"/></svg>用地圖導航</a></div>
-        </div></div>`;
-    });
-  });
-  h+=`<div class="rec-note">拍照策略:城市全景→米之山展望台＋福岡塔;日式神社→太宰府天滿宮、櫛田神社、上色見熊野座神社;自然景觀→高千穗峽、金鱗湖、別府地獄、夫婦岩;特殊體驗→由布院之森列車、武雄圖書館、雲仙地獄夜間步道。</div>`;
   c.innerHTML=h;
   c.querySelectorAll(".rec-card").forEach(el=>{
     const tg=()=>el.setAttribute("aria-expanded",el.getAttribute("aria-expanded")==="true"?"false":"true");
@@ -774,11 +727,11 @@ function renderRec(){
   });
 }
 renderRec();
-// 取得某個行程站點對應的口碑推薦項目名稱(自動同名比對 + 手動對照表)
+// 每個非旅館的行程站點名稱集合,用來判斷行程頁該不該顯示「這裡有口碑推薦」按鈕
+const NAV_STOP_NAMES=new Set();
+DAYS.forEach(d=>d.stops.forEach(s=>{if(s.ic!=="hotel")NAV_STOP_NAMES.add(s.name);}));
 function recMatchesFor(stopName){
-  const auto=[...BUY,...PHOTO].some(g=>g.items.some(it=>it.name===stopName))?[stopName]:[];
-  const manual=STOP_REC_MAP[stopName]||[];
-  return [...new Set([...auto,...manual])];
+  return NAV_STOP_NAMES.has(stopName)?[stopName]:[];
 }
 // 從行程頁跳去導覽頁,並展開/捲動到對應的推薦卡片
 function jumpToRec(names){
